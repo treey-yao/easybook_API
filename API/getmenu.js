@@ -4,13 +4,12 @@ const book = require("../fun/book.js");
 
 
 let router = new Router();
-router.get('/', async(ctx) => {
+router.get('/index', async(ctx) => {
     ctx.body = "呵呵呵";
 
     //电子书列表
-    book.booklist();
-
-
+    // book.booklist();
 });
+
 
 module.exports = router;

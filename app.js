@@ -14,14 +14,15 @@ app.use(static(
 
 
 
-let index = require('./API/index.js');
+let getMmenu = require('./API/getmenu.js');
 
 
 
 
 //装载所有子路由
 let router = new Router()
-router.use('/index', index.routes())
+    //爬去目录
+router.use('/getmenu', getMmenu.routes())
 
 
 
