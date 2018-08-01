@@ -2,7 +2,6 @@ const Router = require('koa-router');
 const book = require("../fun/book.js");
 
 
-
 let router = new Router();
 router.get('/index', async(ctx) => {
     ctx.body = "呵呵呵";
