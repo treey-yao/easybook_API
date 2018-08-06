@@ -30,6 +30,4 @@ router.get('/index', async(ctx) => {
     ctx.body = star;
 });
 
-
-
 module.exports = router;

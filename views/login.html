@@ -85,7 +85,6 @@
                         showMessage("请填写用户名！");
                     } else if (userpaw == "" || null) {
                         showMessage("请填写密码！");
-
                     } else {
                         axios.get('/login/index', {
                                 params: {
@@ -113,11 +112,8 @@
                                 showMessage("系统繁忙，请稍等一会在登录");
                                 console.log(err);
                             });
-
                     }
-
                 }
-
             }
         })
     </script>
