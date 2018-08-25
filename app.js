@@ -23,6 +23,7 @@ app.use(views(path.join(__dirname, './views'), {
 // 页面路由
 let index = require('./router/index.js');
 let login = require('./router/login.js');
+let bookshelf = require('./router/bookshelf.js');
 let getMmenu = require('./API/getmenu.js');
 
 
@@ -32,6 +33,7 @@ let router = new Router();
 
 router.use('/', index.routes()) //首页
 router.use('/login', login.routes()) // 登陆
+router.use('/bookshelf', bookshelf.routes()) // 书架
 router.use('/getmenu', getMmenu.routes()) //抓取网站数据
 
 

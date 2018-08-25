@@ -1,86 +1,177 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <link rel="icon" href="/img/favicon/favicon.ico">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/img/favicon/favicon.ico">
 
-        <title>简单书城</title>
+    <title>简单书城</title>
 
-        <!-- Bootstrap core CSS -->
-        <link href="/css/core/bootstrap.css" rel="stylesheet">
-        <!-- Custom styles for this template -->
-        <link href="/css/core/jumbotron.css" rel="stylesheet">
-        <link href="/js/lib/toast/toast.css" rel="stylesheet">
-        <link href="/css/index.css" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="/css/core/bootstrap.css" rel="stylesheet">
+    <link href="/css/common.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/js/lib/toast/toast.css" rel="stylesheet">
+    <link href="/css/index.css" rel="stylesheet">
 
-    </head>
+</head>
 
-    <body>
+<body>
 
-        <nav class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
                     <span class="sr-only">简单书城</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                    <a class="navbar-brand" href="/">简单书城</a>
-                </div>
-                <div id="navbar" class="navbar-collapse collapse">
-
-                    <!--菜单-->
-                    <ul class="nav navbar-nav">
-                        <li class="active">
-                            <a href="/">首页
-                            <span class="sr-only">(current)</span>
-                        </a>
-                        </li>
-                        <li>
-                            <a href="/">我的书架</a>
-                        </li>
-                        <li>
-                            <a href="/">添加图书</a>
-                        </li>
-                    </ul>
-                </div>
-                <!--/.navbar-collapse -->
+                <a class="navbar-brand" href="/">简单书城</a>
             </div>
-        </nav>
-        <!-- Main jumbotron for a primary marketing message or call to action -->
+            <div id="navbar" class="navbar-collapse collapse">
+
+                <!--菜单-->
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a>首页</a>
+                    </li>
+                    <li>
+                        <a href="/bookshelf">我的书架</a>
+                    </li>
+                    <li>
+                        <a href="/addbook">添加图书</a>
+                    </li>
+                </ul>
+            </div>
+            <!--/.navbar-collapse -->
+        </div>
+    </nav>
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+
+
+    <div class="container">
+        <!-- Example row of columns -->
         <div class="jumbotron">
-            <h1>Easy Book</h1>
-            <p>简单书城后台，管理你的书籍</p>
-
-        </div>
-
-        <div class="container">
-            <!-- Example row of columns -->
-            <div class="row" id="yj-content">
+            <div class="container">
+                <h1>Easy Book-后台 </h1>
+                <p>简单书城后台，管理你的书籍</p>
             </div>
-
-
-            <hr>
-            <footer>
-                <p class="text-center">&copy; 2018 Personal, Inc.</p>
-            </footer>
         </div>
-        <!-- /container -->
 
-        <!-- Bootstrap core JavaScript
+        <div class="new-book-wrap">
+            <div class=" panel panel-info ">
+                <div class="panel-heading ">
+                    <h3 class="panel-title ">最新书籍</h3>
+                </div>
+                <div class="panel-body ">
+                    <div class="">
+                        <table class="table text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Username</th>
+                                    <th>Username</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Larry</td>
+                                    <td>the Bird</td>
+                                    <td>@twitter</td>
+                                    <td>@mdo</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="new-book-wrap">
+            <div class=" panel  panel-success ">
+                <div class="panel-heading ">
+                    <h3 class="panel-title ">书籍分类</h3>
+                </div>
+                <div class="panel-body ">
+                    <div class="">
+                        <table class="table text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Username</th>
+                                    <th>Username</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Larry</td>
+                                    <td>the Bird</td>
+                                    <td>@twitter</td>
+                                    <td>@mdo</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p class="text-center ">&copy; 2018 Personal, Inc.</p>
+    </footer>
+    <!-- /container -->
+
+    <!-- Bootstrap core JavaScript
     ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script src="/js/jquery.js"></script>
-        <script src="/js/bootstrap.js"></script>
-        <script src="/js/lib/toast/toast.js"></script>
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/js/jquery.js "></script>
+    <script src="/js/bootstrap.js "></script>
+    <script src="/js/lib/toast/toast.js "></script>
 
-    </body>
+</body>
 
 </html>
