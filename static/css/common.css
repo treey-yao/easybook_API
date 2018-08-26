@@ -1,6 +1,70 @@
+html,
+body{
+    background: #f3f3f3
+}
+
 
 body {
     padding-top: 70px;
     padding-bottom: 30px;
 }
 
+.ui-content-box{
+    background: #fff;
+    padding: 15px 0px;
+}
+
+.form-horizontal.win100 .control-label{
+    width: 100px;
+    margin: auto 15px; 
+    float: left;
+}
+
+
+/* 上传控件 */
+.input-append{
+    display: block; 
+    position: relative;
+
+}
+
+.input-append input{
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.input-append .btn{
+    color: #333;
+    background-color: #f3f3f3;
+    border-color: #adadad;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 30px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.4
+}
+
+.input-append input[type="file"]{
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    widows: 100%;
+    height:30px;
+    z-index: 10;
+}

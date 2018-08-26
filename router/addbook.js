@@ -6,7 +6,7 @@ let router = new Router();
 // 首页
 router.get('/', async (ctx) => {
 
-    await ctx.render('index')
+    await ctx.render('addbook')
 
 });
 
