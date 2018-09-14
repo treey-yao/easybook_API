@@ -21,14 +21,15 @@ app.use(views(path.join(__dirname, './views'), {
 
 
 // 页面路由
+// 页面
 let index = require('./router/index.js');
 let login = require('./router/login.js');
 let bookshelf = require('./router/bookshelf.js');
 let addbook = require('./router/addbook.js');
 
-
+let books = require('./router/books.js');
+// 功能
 let getMmenu = require('./API/getmenu.js');
-
 
 
 //装载所有子路由
@@ -38,6 +39,11 @@ router.use('/', index.routes()) //首页
 router.use('/login', login.routes()) // 登陆
 router.use('/bookshelf', bookshelf.routes()) // 书架
 router.use('/addbook', addbook.routes()) // 添加图书
+router.use('/books', books.routes()) // 爬取图书
+
+
+
+
 router.use('/getmenu', getMmenu.routes()) //抓取网站数据
 
 

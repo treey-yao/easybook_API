@@ -1,19 +1,51 @@
-var charset = require('superagent-charset');
-var superagent = charset(require('superagent')); //一个类似Ajax为了访问网页返回数据的包
+const charset = require('superagent-charset');
+const superagent = charset(require('superagent')); //一个类似Ajax为了访问网页返回数据的包
 
-var cheerio = require('cheerio'); //一个类似JQ主要为了读取HTMLE页面的包
-var request = require('request'); //一个类似JQ主要为了读取HTMLE页面的包
+const cheerio = require('cheerio'); //一个类似JQ主要为了读取HTMLE页面的包
+const request = require('request'); //一个类似JQ主要为了读取HTMLE页面的包
 
-var fs = require("fs") //node原生文件系统
-var path = require('path'); //node原生路径系统
-var http = require("http"); //node原生http系统
+const fs = require("fs") //node原生文件系统
+const path = require('path'); //node原生路径系统
+const http = require("http"); //node原生http系统
+
+const common = require("../fun/common.js");
 
 var dir = './static/data/menu/sort01.json';
+
+
+// 获取书籍分类目录
+exports.bookMenu = function() {
+
+    var dir = './static/data/menu/bookMenu.json';
+    var Menu = [];
+    var Menus = Array();
+    superagent.get("https://www.qisuu.la").end(function(err, res) {
+        var $ = cheerio.load(res.text);
+        var navText = $(".nav");
+        for (let k = 0; k < navText.find("a").length; k++) {
+            var arr = '{' +
+                '"menuId" : "M' + k + '",' +
+                '"menuLink" : "' + navText.find("a").eq(k).attr("href") + '",' +
+                '"menuNmae" : "' + navText.find("a").eq(k).text() + '"' +
+                '}';
+            Menu.push(arr);
+        }
+        Menus = '{"menuTitleName": "分类菜单", "data": [' + Menu + ']}'
+        fs.appendFile(dir, Menus, function(err) {
+            if (err) {
+                console.log(err);
+            }
+            console.log("添加成功！");
+            return Menus;
+        });
+    });
+}
 
 
 // 爬取 电子书列表
 //page 爬去多少页
 //sortName 分类名称
+//fileName 文件名
 exports.booklist = function(page, sortName, fileName) {
 
     var dir = './static/data/menu/' + fileName + '.json';
@@ -41,7 +73,6 @@ exports.booklist = function(page, sortName, fileName) {
                 indexid(i)
             });
         } else {
-
             superagent.get("https://www.qisuu.la/soft/sort01/index_" + i + ".html").end(function(err, res) {
                 var $ = cheerio.load(res.text);
                 var texts = $(".listBox");
@@ -70,9 +101,8 @@ exports.booklist = function(page, sortName, fileName) {
                         }
                         console.log("添加成功！");
                     });
-                    return;
+                    return book;
                 }
-
             });
         }
     }
