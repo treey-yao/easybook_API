@@ -11,7 +11,6 @@ router.get('/', async(ctx) => {
 
 
 
-
 // 获取书籍列表
 router.get('/clawBook', async(ctx) => {
     var menuInfo = ctx.query;
@@ -33,9 +32,5 @@ router.get('/clawBook', async(ctx) => {
     }
 
 });
-
-
-
-
 
 module.exports = router;

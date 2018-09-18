@@ -14,12 +14,17 @@ var dir = './static/data/menu/sort01.json';
 
 
 // 获取书籍分类目录
-exports.bookMenu = function() {
+exports.bookMenu = function(callback) {
 
     var dir = './static/data/menu/bookMenu.json';
     var Menu = [];
     var Menus = Array();
-    superagent.get("https://www.qisuu.la").end(function(err, res) {
+    superagent.get("https://www.qisuu.la/").end(function(err, res) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        console.log(res.text)
         var $ = cheerio.load(res.text);
         var navText = $(".nav");
         for (let k = 0; k < navText.find("a").length; k++) {
@@ -36,7 +41,7 @@ exports.bookMenu = function() {
                 console.log(err);
             }
             console.log("添加成功！");
-            return Menus;
+            callback(Menus);
         });
     });
 }
@@ -45,16 +50,18 @@ exports.bookMenu = function() {
 // 爬取 电子书列表
 //page 爬去多少页
 //sortName 分类名称
+//sortLink 分类地址
 //fileName 文件名
-exports.booklist = function(page, sortName, fileName) {
+exports.booklist = function(page, fileName, sortLink, sortName, callback) {
 
-    var dir = './static/data/menu/' + fileName + '.json';
+    var dir = './static/data/book/' + fileName + '.json';
     var book = [];
     var books = Array();
+    console.log("https://www.qisuu.la" + sortLink);
 
     function indexid(i) {
         if (i == 0) {
-            superagent.get("https://www.qisuu.la/soft/sort01").end(function(err, res) {
+            superagent.get("https://www.qisuu.la" + sortLink).set('referer', 'https://www.qisuu.la/').set('host', 'www.qisuu.la').buffer(true).end(function(err, res) {
                 var $ = cheerio.load(res.text);
                 var texts = $(".listBox");
 
@@ -73,7 +80,7 @@ exports.booklist = function(page, sortName, fileName) {
                 indexid(i)
             });
         } else {
-            superagent.get("https://www.qisuu.la/soft/sort01/index_" + i + ".html").end(function(err, res) {
+            superagent.get("https://www.qisuu.la" + sortLink + "index_" + i + ".html").set('referer', 'https://www.qisuu.la/').set('host', 'www.qisuu.la').buffer(true).end(function(err, res) {
                 var $ = cheerio.load(res.text);
                 var texts = $(".listBox");
 
@@ -100,11 +107,12 @@ exports.booklist = function(page, sortName, fileName) {
                             console.log(err);
                         }
                         console.log("添加成功！");
+                        callback(books)
                     });
-                    return book;
                 }
             });
         }
     }
-    indexid(0)
+    indexid(0);
+
 }

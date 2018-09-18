@@ -52,13 +52,13 @@
             </div>
 
             <h4 class="btn-group sub-header" role="group" aria-label="...">
-                <button v-for="item in bookMenuBtn" type="button" :id="item.menuId" :data-herf="item.menuLink" class="btn btn-default" @click="addBook()">{{item.menuNmae}}</button>
+                <button v-for="(item,index) in bookMenuBtn" v-if="index!=0" type="button" class="btn btn-default" @click="addBook(item.menuId)">{{item.menuNmae}}</button>
             </h4>
 
             <div class="panel panel-default">
-                <div class="panel-heading">奇幻</div>
+                <div class="panel-heading">{{menuName}}</div>
                 <div class="panel-body">
-                    奇幻
+                    {{BooKtext}}
                 </div>
             </div>
         </div>

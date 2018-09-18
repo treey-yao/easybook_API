@@ -1,39 +1,42 @@
-
 /* 类型 */
-.books-warp{
+
+.books-warp {
     display: block
 }
 
-.book-item{
+.book-item {
     border: 1px solid #ccc;
     margin: 15px;
     padding: 0px;
 }
 
-.pull-img-box{
+.pull-img-box {
     width: 100%;
+    min-height: 200px;
     max-height: 200px;
     overflow: hidden;
 }
 
-.pull-img-box img{
+.pull-img-box img {
     width: 100%;
 }
 
-.cmdlist-text{
+.cmdlist-text {
     display: block;
     padding: 5px 10px;
 }
-.book-name{
+
+.book-name {
     display: block;
     font-size: 16px;
     font-weight: 600;
     margin-top: 10px;
-    height: 25px;
+    height: 42px;
     line-height: 20px;
     overflow: hidden;
 }
-.explain-text{
+
+.explain-text {
     display: block;
     height: 100px;
     overflow: hidden;
