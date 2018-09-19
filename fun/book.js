@@ -1,12 +1,13 @@
 const charset = require('superagent-charset');
 const superagent = charset(require('superagent')); //一个类似Ajax为了访问网页返回数据的包
+require('superagent-proxy')(superagent);
 
 const cheerio = require('cheerio'); //一个类似JQ主要为了读取HTMLE页面的包
 const request = require('request'); //一个类似JQ主要为了读取HTMLE页面的包
 
 const fs = require("fs") //node原生文件系统
 const path = require('path'); //node原生路径系统
-const http = require("http"); //node原生http系统
+const http = require('https'); //node原生http系统
 
 const common = require("../fun/common.js");
 
@@ -47,7 +48,7 @@ exports.bookMenu = function(callback) {
 }
 
 
-// 爬取 电子书列表
+//爬取 电子书列表
 //page 爬去多少页
 //sortName 分类名称
 //sortLink 分类地址
@@ -114,5 +115,25 @@ exports.booklist = function(page, fileName, sortLink, sortName, callback) {
         }
     }
     indexid(0);
+
+}
+
+
+//下载 电子书
+//dir 下载到的文件夹
+//bookLink 下载地址
+//bookId  书籍Id
+
+exports.downBook = function(dir, bookLink, bookId, callback) {
+
+    var dirBook = dir;
+    console.log("https://www.qisuu.la" + bookLink);
+    superagent.get("https://www.qisuu.la" + bookLink).set('referer', 'https://www.qisuu.la/').set('host', 'www.qisuu.la').buffer(true).end(function(err, res) {
+
+        var $ = cheerio.load(res.text);
+        var downBtn = $(".showDown");
+
+    })
+
 
 }

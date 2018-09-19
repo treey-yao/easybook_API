@@ -9,8 +9,6 @@ router.get('/', async(ctx) => {
     await ctx.render('books/books');
 });
 
-
-
 // 获取书籍列表
 router.get('/clawBook', async(ctx) => {
     var menuInfo = ctx.query;

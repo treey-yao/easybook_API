@@ -17,5 +17,8 @@
     "request": "^2.87.0",
     "superagent": "^3.8.3",
     "superagent-charset": "^1.2.0"
+  },
+  "devDependencies": {
+    "superagent-proxy": "^2.0.0"
   }
 }

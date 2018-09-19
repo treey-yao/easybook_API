@@ -5,6 +5,7 @@ $(function() {
         data: {
             bookMenuBtn: null,
             activeId: 1,
+            menuId: "M1",
             bookList: null,
             path: "https://www.qisuu.la",
         },
@@ -14,8 +15,7 @@ $(function() {
         methods: {
             init: function() {
                 this.MenuBtnAjax();
-                this.bookListAjax("M1");
-
+                this.bookListAjax(this.menuId);
             },
             MenuBtnAjax: function() {
                 var that = this;
@@ -40,6 +40,28 @@ $(function() {
                         }
                     })
                     .then(function(res) {
+                        console.log(res)
+                        if (res.data.code == 1) {
+                            that.bookList = res.data.bookSort;
+                        } else {
+                            showMessage("系统错误！请刷新页面");
+                        }
+                    })
+                    .catch(function(err) {
+                        showMessage("系统错误！请刷新页面");
+                        console.log(err);
+                    });
+            },
+            downloadAjax: function(bookId, menuId, bookLink) {
+                var that = this;
+                axios.get('/bookshelf/downBook', {
+                        params: {
+                            menuId: menuId,
+                            bookId: bookId,
+                            bookLink: bookLink
+                        }
+                    })
+                    .then(function(res) {
                         if (res.data.code == 1) {
                             that.bookList = res.data.bookSort;
                         } else {
@@ -53,8 +75,12 @@ $(function() {
             },
             bookBtn: function(v, i) {
                 this.activeId = v;
+                this.menuId = i;
                 this.bookListAjax(i);
-            }
+            },
+            downloadBook: function(v, i) {
+                this.downloadAjax(v, this.menuId, i);
+            },
         }
     })
 

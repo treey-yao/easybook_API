@@ -2,6 +2,8 @@ const Router = require('koa-router');
 const fs = require("fs");
 
 const common = require("../fun/common.js");
+const book = require("../fun/book.js");
+
 let router = new Router();
 
 
@@ -21,5 +23,18 @@ router.get('/bookList', async(ctx) => {
     ctx.body = Booklist;
 });
 
+// 下载图书
+router.get('/downBook', async(ctx) => {
+    var bookInfo = ctx.query;
+    var dir = './static/data/works/' + bookInfo.menuId;
+    common.existsFolder(dir, function() {
+        //dir 下载到的文件夹
+        //bookLink 下载地址
+        //bookId  书籍Id
+        book.downBook(dir, bookInfo.bookLink, bookInfo.bookId, function() {
+            ctx.body = "11111";
+        })
+    });
+});
 
 module.exports = router;

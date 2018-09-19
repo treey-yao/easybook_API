@@ -13,9 +13,27 @@ exports.existsFile = function(dir, callback) {
             callback();
         });
     } else {
-        callback();
+
     }
 };
+
+// 判断是否有该文件夹
+exports.existsFolder = function(dir, callback) {
+    var stat = fs.existsSync(dir);
+    if (stat) {
+        callback();
+    } else {
+        fs.mkdir(dir, function(err) {
+            if (err) {
+                return console.log(err);
+            }
+            console.log("创建文件成功");
+            callback();
+        })
+    }
+};
+
+
 // 获取文件数据 并转换成Json
 exports.fileJson = function(dir) {
     var bookText = fs.readFileSync(dir, 'utf8');
