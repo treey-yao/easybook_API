@@ -3,15 +3,13 @@ const superagent = charset(require('superagent')); //一个类似Ajax为了访�
 require('superagent-proxy')(superagent);
 
 const cheerio = require('cheerio'); //一个类似JQ主要为了读取HTMLE页面的包
-const request = require('request'); //一个类似JQ主要为了读取HTMLE页面的包
+const request = require('request');
+
 
 const fs = require("fs") //node原生文件系统
 const path = require('path'); //node原生路径系统
 const http = require('https'); //node原生http系统
-
 const common = require("../fun/common.js");
-
-var dir = './static/data/menu/sort01.json';
 
 
 // 获取书籍分类目录
@@ -123,17 +121,28 @@ exports.booklist = function(page, fileName, sortLink, sortName, callback) {
 //dir 下载到的文件夹
 //bookLink 下载地址
 //bookId  书籍Id
-
-exports.downBook = function(dir, bookLink, bookId, callback) {
+//menuId  目录Id
+exports.downBook = function(dir, bookLink, bookId, menuId, callback) {
 
     var dirBook = dir;
+    var downDir = "./static/data/upload/" + menuId;
     console.log("https://www.qisuu.la" + bookLink);
     superagent.get("https://www.qisuu.la" + bookLink).set('referer', 'https://www.qisuu.la/').set('host', 'www.qisuu.la').buffer(true).end(function(err, res) {
 
         var $ = cheerio.load(res.text);
-        var downBtn = $(".showDown");
-
+        var downBtn = $(".showDown li").eq(2);
+        var scriptText = downBtn.find("script").html();
+        scriptText = scriptText.replace("get_down_url('", "");
+        scriptText = scriptText.replace("');", "");
+        scriptText = scriptText.split("','");
+        var downLink = scriptText[1];
+        var bookName = scriptText[2];
+        console.log(downLink, bookName)
+        common.existsFolder(downDir, function() {
+            common.downloadFile(downLink, downDir + '/' + bookName + ".txt", function() {
+                console.log("下载成功")
+            })
+        })
     })
-
 
 }

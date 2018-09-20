@@ -28,10 +28,7 @@ router.get('/downBook', async(ctx) => {
     var bookInfo = ctx.query;
     var dir = './static/data/works/' + bookInfo.menuId;
     common.existsFolder(dir, function() {
-        //dir 下载到的文件夹
-        //bookLink 下载地址
-        //bookId  书籍Id
-        book.downBook(dir, bookInfo.bookLink, bookInfo.bookId, function() {
+        book.downBook(dir, bookInfo.bookLink, bookInfo.bookId, bookInfo.menuId, function() {
             ctx.body = "11111";
         })
     });

@@ -1,5 +1,6 @@
-var fs = require("fs") //node原生文件系统
-var path = require('path'); //node原生路径系统
+const fs = require("fs") //node原生文件系统
+const path = require('path'); //node原生路径系统
+const request = require('request');
 
 // 判断是否有该文件
 exports.existsFile = function(dir, callback) {
@@ -40,3 +41,16 @@ exports.fileJson = function(dir) {
     bookText = JSON.parse(bookText);
     return bookText;
 };
+
+/*
+ * url 网络文件地址
+ * filename 文件名
+ * callback 回调函数
+ */
+exports.downloadFile = function(url, filename, callback) {
+
+    request.head(url, function(err, res, body) {
+        var stream = fs.createWriteStream(filename);
+        request(url).pipe(stream).on('close', callback);
+    });
+}
