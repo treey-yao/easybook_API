@@ -5,12 +5,12 @@ const book = require("../fun/book.js");
 let router = new Router();
 
 // 首页
-router.get('/', async(ctx) => {
+router.get('/', async (ctx) => {
     await ctx.render('books/books');
 });
 
 // 获取书籍列表
-router.get('/clawBook', async(ctx) => {
+router.get('/clawBook', async (ctx) => {
     var menuInfo = ctx.query;
     var page = 10;
 

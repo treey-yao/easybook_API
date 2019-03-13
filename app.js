@@ -5,7 +5,6 @@ const path = require('path');
 const static = require('koa-static'); //静态资源
 const views = require('koa-views'); //模板引擎模
 
-
 const app = new Koa();
 
 
@@ -41,15 +40,12 @@ router.use('/bookshelf', bookshelf.routes()) // 书架
 router.use('/addbook', addbook.routes()) // 添加图书
 router.use('/books', books.routes()) // 爬取图书
 
-
 router.use('/getmenu', getMmenu.routes()) //抓取网站数据
-
 
 
 //加载路由中间件
 
 app.use(router.routes())
 app.use(router.allowedMethods())
-
 
 app.listen(8082) //设置监听端口

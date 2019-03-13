@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
 
     var vm = new Vue({
         el: '#VmBook',
@@ -13,33 +13,33 @@ $(function() {
             this.init();
         },
         methods: {
-            init: function() {
-                this.MenuBtnAjax();
+            init: function () {
+                this.ajaxMenu();
                 this.bookListAjax(this.menuId);
             },
-            MenuBtnAjax: function() {
+            ajaxMenu: function () {
                 var that = this;
                 axios.get('/getmenu/menu')
-                    .then(function(res) {
+                    .then(function (res) {
                         if (res.data.code == 1) {
                             that.bookMenuBtn = res.data.data;
                         } else {
                             showMessage("请先添加目录");
                         }
                     })
-                    .catch(function(err) {
+                    .catch(function (err) {
                         showMessage("系统错误！请刷新页面");
                         console.log(err);
                     });
             },
-            bookListAjax: function(menuId) {
+            bookListAjax: function (menuId) {
                 var that = this;
                 axios.get('/bookshelf/bookList', {
-                        params: {
-                            menuId: menuId,
-                        }
-                    })
-                    .then(function(res) {
+                    params: {
+                        menuId: menuId,
+                    }
+                })
+                    .then(function (res) {
                         console.log(res)
                         if (res.data.code == 1) {
                             that.bookList = res.data.bookSort;
@@ -47,38 +47,38 @@ $(function() {
                             showMessage("系统错误！请刷新页面");
                         }
                     })
-                    .catch(function(err) {
+                    .catch(function (err) {
                         showMessage("系统错误！请刷新页面");
                         console.log(err);
                     });
             },
-            downloadAjax: function(bookId, menuId, bookLink) {
+            downloadAjax: function (bookId, menuId, bookLink) {
                 var that = this;
                 axios.get('/bookshelf/downBook', {
-                        params: {
-                            menuId: menuId,
-                            bookId: bookId,
-                            bookLink: bookLink
-                        }
-                    })
-                    .then(function(res) {
+                    params: {
+                        menuId: menuId,
+                        bookId: bookId,
+                        bookLink: bookLink
+                    }
+                })
+                    .then(function (res) {
                         if (res.data.code == 1) {
                             that.bookList = res.data.bookSort;
                         } else {
                             showMessage("系统错误！请刷新页面");
                         }
                     })
-                    .catch(function(err) {
+                    .catch(function (err) {
                         showMessage("系统错误！请刷新页面");
                         console.log(err);
                     });
             },
-            bookBtn: function(v, i) {
+            bookBtn: function (v, i) {
                 this.activeId = v;
                 this.menuId = i;
                 this.bookListAjax(i);
             },
-            downloadBook: function(v, i) {
+            downloadBook: function (v, i) {
                 this.downloadAjax(v, this.menuId, i);
             },
         }

@@ -3,10 +3,10 @@ const path = require('path'); //node原生路径系统
 const request = require('request');
 
 // 判断是否有该文件
-exports.existsFile = function(dir, callback) {
+exports.existsFile = function (dir, callback) {
     var stat = fs.existsSync(dir);
     if (!stat) {
-        fs.writeFile(dir, "", function(err) {
+        fs.writeFile(dir, "", function (err) {
             if (err) {
                 return console.log(err);
             }
@@ -19,12 +19,12 @@ exports.existsFile = function(dir, callback) {
 };
 
 // 判断是否有该文件夹
-exports.existsFolder = function(dir, callback) {
+exports.existsFolder = function (dir, callback) {
     var stat = fs.existsSync(dir);
     if (stat) {
         callback();
     } else {
-        fs.mkdir(dir, function(err) {
+        fs.mkdir(dir, function (err) {
             if (err) {
                 return console.log(err);
             }
@@ -36,7 +36,7 @@ exports.existsFolder = function(dir, callback) {
 
 
 // 获取文件数据 并转换成Json
-exports.fileJson = function(dir) {
+exports.fileJson = function (dir) {
     var bookText = fs.readFileSync(dir, 'utf8');
     bookText = JSON.parse(bookText);
     return bookText;
@@ -47,9 +47,8 @@ exports.fileJson = function(dir) {
  * filename 文件名
  * callback 回调函数
  */
-exports.downloadFile = function(url, filename, callback) {
-
-    request.head(url, function(err, res, body) {
+exports.downloadFile = function (url, filename, callback) {
+    request.head(url, function (err, res, body) {
         var stream = fs.createWriteStream(filename);
         request(url).pipe(stream).on('close', callback);
     });

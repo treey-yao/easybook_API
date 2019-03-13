@@ -3,42 +3,54 @@
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible"
+          content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="/img/favicon/favicon.ico">
-
+    <meta name="description"
+          content="">
+    <meta name="author"
+          content="">
+    <link rel="icon"
+          href="/img/favicon/favicon.ico">
     <title>简单书城</title>
-
     <!-- Bootstrap core CSS -->
-    <link href="/css/core/bootstrap.css" rel="stylesheet">
-    <link href="/css/common.css" rel="stylesheet">
+    <link href="/css/core/bootstrap.css"
+          rel="stylesheet">
+    <link href="/css/common.css"
+          rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="/js/lib/toast/toast.css" rel="stylesheet">
-    <link href="/css/addbook.css" rel="stylesheet">
+    <link href="/js/lib/toast/toast.css"
+          rel="stylesheet">
+    <link href="/css/addbook.css"
+          rel="stylesheet">
 </head>
 
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-                    aria-controls="navbar">
+                <button type="button"
+                        class="navbar-toggle collapsed"
+                        data-toggle="collapse"
+                        data-target="#navbar"
+                        aria-expanded="false"
+                        aria-controls="navbar">
                     <span class="sr-only">简单书城</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/">简单书城</a>
+                <a class="navbar-brand"
+                   href="/">简单书城</a>
             </div>
-            <div id="navbar" class="navbar-collapse collapse">
+            <div id="navbar"
+                 class="navbar-collapse collapse">
                 <!--菜单-->
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="/">首页
-                            <span class="sr-only">(current)</span>
+                        <a href="/">首页 <span class="sr-only">(current)</span>
                         </a>
                     </li>
                     <li>
@@ -53,64 +65,74 @@
         </div>
     </nav>
     <!-- Main jumbotron for a primary marketing message or call to action -->
-
-    <div class="container ui-content-box">
+    <div class="container ui-content-box"
+         id="VmBook">
         <h5 class="sub-header">添加书籍</h5>
         <div class="panel-body form-horizontal win100">
             <div class="form-group">
                 <label class="control-label">书籍名称</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" placeholder="Email">
+                    <input type="text"
+                           class="form-control"
+                           v-model="name"
+                           placeholder="请输入书籍名称">
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label">书籍类型</label>
                 <div class="col-sm-10">
-                    <select name="" class="form-control">
-                        <option value="">玄幻</option>
-                        <option value="">玄幻</option>
-                        <option value="">玄幻</option>
+                    <select class="form-control"
+                            v-model="type">
+                        <option value="玄幻">玄幻</option>
+                        <option value="科幻">科幻</option>
+                        <option value="穿越">穿越</option>
                     </select>
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label">书籍简介</label>
                 <div class="col-sm-10">
-                    <textarea class="form-control" rows="3"></textarea>
+                    <textarea class="form-control"
+                              v-model="desc"
+                              rows="3"></textarea>
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label">上传书籍</label>
                 <div class="col-sm-10">
                     <div class="input-append">
-                        <input id="photoCover" class="input-large" type="text" style="height:30px;">
-                        <a class="btn" onclick="$('input[id=lefile]').click();">上传</a>
-                        <input id="lefile" type="file" style="display:none">
+                        <input id="photoCover"
+                               class="input-large"
+                               type="text"
+                               style="height:30px;">
+                        <a class="btn"
+                           onclick="$('input[id=lefile]').click();">上传</a>
+                        <input id="lefile"
+                               type="file"
+                               style="display:none">
                     </div>
                 </div>
             </div>
-
             <div class="form-group">
                 <div class="col-sm-10 text-center">
                     <span class="btn btn-primary btn-lg"> 添加书籍</span>
                 </div>
             </div>
-
         </div>
     </div>
-
     <footer>
         <p class="text-center ">&copy; 2018 Personal, Inc.</p>
     </footer>
     <!-- /container -->
-
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="/js/jquery.js "></script>
     <script src="/js/bootstrap.js "></script>
+    <script src="/js/vue.js "></script>
+    <script src="/js/axios.min.js"></script>
+    <script src="/js/views/addbook.js "></script>
     <script src="/js/lib/toast/toast.js "></script>
-
 </body>
 
 </html>
