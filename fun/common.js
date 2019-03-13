@@ -14,7 +14,7 @@ exports.existsFile = function (dir, callback) {
             callback();
         });
     } else {
-
+        callback();
     }
 };
 
@@ -24,7 +24,7 @@ exports.existsFolder = function (dir, callback) {
     if (stat) {
         callback();
     } else {
-        fs.mkdir(dir, function (err) {
+        fs.mkdirSync(dir, function (err) {
             if (err) {
                 return console.log(err);
             }

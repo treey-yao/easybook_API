@@ -38,19 +38,16 @@ $(function () {
                     params: {
                         menuId: menuId,
                     }
-                })
-                    .then(function (res) {
-                        console.log(res)
-                        if (res.data.code == 1) {
-                            that.bookList = res.data.bookSort;
-                        } else {
-                            showMessage("系统错误！请刷新页面");
-                        }
-                    })
-                    .catch(function (err) {
+                }).then(function (res) {
+                    if (res.data.code == 1) {
+                        that.bookList = res.data.bookSort;
+                    } else {
                         showMessage("系统错误！请刷新页面");
-                        console.log(err);
-                    });
+                    }
+                }).catch(function (err) {
+                    showMessage("系统错误！请刷新页面");
+                    console.log(err);
+                });
             },
             downloadAjax: function (bookId, menuId, bookLink) {
                 var that = this;
@@ -60,18 +57,16 @@ $(function () {
                         bookId: bookId,
                         bookLink: bookLink
                     }
-                })
-                    .then(function (res) {
-                        if (res.data.code == 1) {
-                            that.bookList = res.data.bookSort;
-                        } else {
-                            showMessage("系统错误！请刷新页面");
-                        }
-                    })
-                    .catch(function (err) {
+                }).then(function (res) {
+                    if (res.data.code == 1) {
+                        that.bookList = res.data.bookSort;
+                    } else {
                         showMessage("系统错误！请刷新页面");
-                        console.log(err);
-                    });
+                    }
+                }).catch(function (err) {
+                    showMessage("系统错误！请刷新页面");
+                    console.log(err);
+                });
             },
             bookBtn: function (v, i) {
                 this.activeId = v;

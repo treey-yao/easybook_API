@@ -24,7 +24,6 @@ router.get('/menu', async (ctx) => {
             ctx.body = bookMenu;
         }
     });
-
 });
 
 //获取书籍列表
@@ -41,7 +40,6 @@ router.get('/bookList', async (ctx) => {
             menuText = bookMenu.data[i].menuNmae;
         }
     }
-
     common.existsFile(dirbook, function () {
         var bookData = fs.readFileSync(dirbook, 'utf8');
         if (bookData.length <= 0) {
@@ -57,7 +55,6 @@ router.get('/bookList', async (ctx) => {
             ctx.body = listText;
         }
     });
-    console.log(1)
 });
 
 module.exports = router;

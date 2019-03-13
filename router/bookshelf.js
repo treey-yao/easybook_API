@@ -29,7 +29,7 @@ router.get('/downBook', async (ctx) => {
     var dir = './static/data/works/' + bookInfo.menuId;
     common.existsFolder(dir, function () {
         book.downBook(dir, bookInfo.bookLink, bookInfo.bookId, bookInfo.menuId, function () {
-            ctx.body = "11111";
+            ctx.body = "1";
         })
     });
 });

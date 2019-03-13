@@ -5,7 +5,6 @@ require('superagent-proxy')(superagent);
 const cheerio = require('cheerio'); //一个类似JQ主要为了读取HTMLE页面的包
 const request = require('request');
 
-
 const fs = require("fs") //node原生文件系统
 const path = require('path'); //node原生路径系统
 const http = require('https'); //node原生http系统
@@ -13,12 +12,12 @@ const common = require("../fun/common.js");
 
 
 // 获取书籍分类目录
-exports.bookMenu = function(callback) {
+exports.bookMenu = function (callback) {
 
     var dir = './static/data/menu/bookMenu.json';
     var Menu = [];
     var Menus = Array();
-    superagent.get("https://www.qisuu.la/").end(function(err, res) {
+    superagent.get("https://www.qisuu.la/").end(function (err, res) {
         if (err) {
             console.log(err);
             return;
@@ -35,7 +34,7 @@ exports.bookMenu = function(callback) {
             Menu.push(arr);
         }
         Menus = '{"menuTitleName": "分类菜单", "data": [' + Menu + ']}'
-        fs.appendFile(dir, Menus, function(err) {
+        fs.appendFile(dir, Menus, function (err) {
             if (err) {
                 console.log(err);
             }
@@ -51,7 +50,7 @@ exports.bookMenu = function(callback) {
 //sortName 分类名称
 //sortLink 分类地址
 //fileName 文件名
-exports.booklist = function(page, fileName, sortLink, sortName, callback) {
+exports.booklist = function (page, fileName, sortLink, sortName, callback) {
 
     var dir = './static/data/book/' + fileName + '.json';
     var book = [];
@@ -60,7 +59,7 @@ exports.booklist = function(page, fileName, sortLink, sortName, callback) {
 
     function indexid(i) {
         if (i == 0) {
-            superagent.get("https://www.qisuu.la" + sortLink).set('referer', 'https://www.qisuu.la/').set('host', 'www.qisuu.la').buffer(true).end(function(err, res) {
+            superagent.get("https://www.qisuu.la" + sortLink).set('referer', 'https://www.qisuu.la/').set('host', 'www.qisuu.la').buffer(true).end(function (err, res) {
                 var $ = cheerio.load(res.text);
                 var texts = $(".listBox");
 
@@ -79,7 +78,7 @@ exports.booklist = function(page, fileName, sortLink, sortName, callback) {
                 indexid(i)
             });
         } else {
-            superagent.get("https://www.qisuu.la" + sortLink + "index_" + i + ".html").set('referer', 'https://www.qisuu.la/').set('host', 'www.qisuu.la').buffer(true).end(function(err, res) {
+            superagent.get("https://www.qisuu.la" + sortLink + "index_" + i + ".html").set('referer', 'https://www.qisuu.la/').set('host', 'www.qisuu.la').buffer(true).end(function (err, res) {
                 var $ = cheerio.load(res.text);
                 var texts = $(".listBox");
 
@@ -98,10 +97,9 @@ exports.booklist = function(page, fileName, sortLink, sortName, callback) {
                 if (i < page) {
                     indexid(i)
                 } else {
-
                     // josn 电子书列表 
                     books = '{"bookTitleName": "' + sortName + '", "bookSort": [' + book + ']}'
-                    fs.appendFile(dir, books, function(err) {
+                    fs.appendFile(dir, books, function (err) {
                         if (err) {
                             console.log(err);
                         }
@@ -113,7 +111,6 @@ exports.booklist = function(page, fileName, sortLink, sortName, callback) {
         }
     }
     indexid(0);
-
 }
 
 
@@ -122,13 +119,13 @@ exports.booklist = function(page, fileName, sortLink, sortName, callback) {
 //bookLink 下载地址
 //bookId  书籍Id
 //menuId  目录Id
-exports.downBook = function(dir, bookLink, bookId, menuId, callback) {
+exports.downBook = function (dir, bookLink, bookId, menuId, callback) {
 
     var dirBook = dir;
-    var downDir = "./static/data/upload/" + menuId;
-    console.log("https://www.qisuu.la" + bookLink);
-    superagent.get("https://www.qisuu.la" + bookLink).set('referer', 'https://www.qisuu.la/').set('host', 'www.qisuu.la').buffer(true).end(function(err, res) {
+    var downDir = "./static/data/works/" + menuId;
+    console.log("https://www.qisuu.la" + bookLink + "11");
 
+    superagent.get("https://www.qisuu.la" + bookLink).set('referer', 'https://www.qisuu.la/').set('host', 'www.qisuu.la').buffer(true).end(function (err, res) {
         var $ = cheerio.load(res.text);
         var downBtn = $(".showDown li").eq(2);
         var scriptText = downBtn.find("script").html();
@@ -138,9 +135,10 @@ exports.downBook = function(dir, bookLink, bookId, menuId, callback) {
         var downLink = scriptText[1];
         var bookName = scriptText[2];
         console.log(downLink, bookName)
-        common.existsFolder(downDir, function() {
-            common.downloadFile(downLink, downDir + '/' + bookName + ".txt", function() {
+        common.existsFolder(downDir, function () {
+            common.downloadFile(downLink, downDir + '/' + bookName + ".txt", function () {
                 console.log("下载成功")
+                callback();
             })
         })
     })
