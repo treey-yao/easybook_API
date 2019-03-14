@@ -119,11 +119,11 @@ exports.booklist = function (page, fileName, sortLink, sortName, callback) {
 //bookLink 下载地址
 //bookId  书籍Id
 //menuId  目录Id
-exports.downBook = function (dir, bookLink, bookId, menuId, callback) {
 
+exports.downBook = function (dir, bookLink, bookId, menuId, callback) {
     var dirBook = dir;
     var downDir = "./static/data/works/" + menuId;
-    console.log("https://www.qisuu.la" + bookLink + "11");
+    console.log("https://www.qisuu.la" + bookLink);
 
     superagent.get("https://www.qisuu.la" + bookLink).set('referer', 'https://www.qisuu.la/').set('host', 'www.qisuu.la').buffer(true).end(function (err, res) {
         var $ = cheerio.load(res.text);
@@ -134,13 +134,18 @@ exports.downBook = function (dir, bookLink, bookId, menuId, callback) {
         scriptText = scriptText.split("','");
         var downLink = scriptText[1];
         var bookName = scriptText[2];
-        console.log(downLink, bookName)
         common.existsFolder(downDir, function () {
-            common.downloadFile(downLink, downDir + '/' + bookName + ".txt", function () {
-                console.log("下载成功")
-                callback();
-            })
+            let promise = new Promise(function (resolve, reject) {
+                callback(true);
+                common.downloadFile(downLink, downDir + '/' + bookName + ".txt", function () {
+                    resolve(true);
+                })
+            });
+            promise.then(function (item) {
+                if (item) {
+                    console.log("下载成功");
+                }
+            });
         })
     })
-
 }

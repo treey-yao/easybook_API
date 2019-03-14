@@ -51,7 +51,7 @@ $(function () {
             },
             downloadAjax: function (bookId, menuId, bookLink) {
                 var that = this;
-                axios.get('/bookshelf/downBook', {
+                axios.get('/bookshelf/downbook', {
                     params: {
                         menuId: menuId,
                         bookId: bookId,
@@ -59,9 +59,7 @@ $(function () {
                     }
                 }).then(function (res) {
                     if (res.data.code == 1) {
-                        that.bookList = res.data.bookSort;
-                    } else {
-                        showMessage("系统错误！请刷新页面");
+                        showMessage("下载成功！");
                     }
                 }).catch(function (err) {
                     showMessage("系统错误！请刷新页面");

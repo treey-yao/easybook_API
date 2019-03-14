@@ -48,8 +48,8 @@ exports.fileJson = function (dir) {
  * callback 回调函数
  */
 exports.downloadFile = function (url, filename, callback) {
-    request.head(url, function (err, res, body) {
+    request.head(encodeURI(url), function (err, res, body) {
         var stream = fs.createWriteStream(filename);
-        request(url).pipe(stream).on('close', callback);
+        request(encodeURI(url)).pipe(stream).on('close', callback);
     });
 }

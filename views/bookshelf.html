@@ -95,7 +95,10 @@
                              aria-label="...">
                             <div class="btn-group"
                                  role="group">
+                                <span class="btn btn-success"
+                                      v-if="i.bookShow==1">已下载</span>
                                 <span class="btn btn-primary"
+                                      v-else
                                       @click="downloadBook(i.bookId,i.bookLink)">下载</span>
                             </div>
                             <div class="btn-group"
