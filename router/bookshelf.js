@@ -6,7 +6,6 @@ const book = require("../fun/book.js");
 
 let router = new Router();
 
-
 // 首页
 router.get('/', async (ctx) => {
     await ctx.render('bookshelf')
@@ -28,27 +27,36 @@ router.get('/downbook', async (ctx) => {
     var dir = './static/data/works/' + bookInfo.menuId;
     var bookDir = './static/data/book/' + bookInfo.menuId + ".json";
     var bookData = common.fileJson(bookDir);
+
     common.existsFolder(dir, function () {
-        dowm.code = 1;
-        ctx.body = dowm;
-        book.downBook(dir, bookInfo.bookLink, bookInfo.bookId, bookInfo.menuId, function (res) {
-            console.log("下载成功");
+        var p = new Promise((resolve, reject) => {
+            book.downBook(dir, bookInfo.bookLink, bookInfo.bookId, bookInfo.menuId, function (res) {
+                resolve(res);
+            })
         });
+        p.then(res => {
+            if (res) {
+                bookData.bookSort.forEach(elm => {
+                    if (elm.bookId == bookInfo.bookId) {
+                        elm.bookShow = 1;
+                    }
+                });
+                fs.writeFile(bookDir, JSON.stringify(bookData), function (err) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    console.log("添加成功！");
+                });
 
-        bookData.bookSort.forEach(elm => {
-            if (elm.bookId == bookInfo.bookId) {
-                elm.bookShow = 1;
+                dowm.code = 1;
+                ctx.body = dowm;
+                console.log("下载成功");
+            } else {
+                dowm.code = 0;
+                ctx.body = dowm;
             }
-        });
-
-        fs.writeFile(bookDir, JSON.stringify(bookData), function (err) {
-            if (err) {
-                console.log(err);
-            }
-            console.log("添加成功！");
-        });
-
-    });
+        })
+    })
 });
 
 module.exports = router;

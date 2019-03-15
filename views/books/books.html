@@ -1,80 +1,89 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <link rel="icon" href="/img/favicon/favicon.ico">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible"
+          content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description"
+          content="">
+    <meta name="author"
+          content="">
+    <link rel="icon"
+          href="/img/favicon/favicon.ico">
+    <title>简单书城</title>
+    <!-- Bootstrap core CSS -->
+    <link href="/css/core/bootstrap.css"
+          rel="stylesheet">
+    <link href="/css/common.css"
+          rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/js/lib/toast/toast.css"
+          rel="stylesheet">
+</head>
 
-        <title>简单书城</title>
-
-        <!-- Bootstrap core CSS -->
-        <link href="/css/core/bootstrap.css" rel="stylesheet">
-        <link href="/css/common.css" rel="stylesheet">
-        <!-- Custom styles for this template -->
-        <link href="/js/lib/toast/toast.css" rel="stylesheet">
-
-    </head>
-
-    <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button"
+                        class="navbar-toggle collapsed"
+                        data-toggle="collapse"
+                        data-target="#navbar"
+                        aria-expanded="false"
+                        aria-controls="navbar">
                     <span class="sr-only">简单书城</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                    <a class="navbar-brand" href="/">简单书城</a>
-                </div>
-                <div id="navbar" class="navbar-collapse collapse">
-
-
-                </div>
-                <!--/.navbar-collapse -->
+                <a class="navbar-brand"
+                   href="/">简单书城</a>
             </div>
-        </nav>
-        <!-- Main jumbotron for a primary marketing message or call to action -->
-
-
-        <div class="container ui-content-box " id="VmBook">
-            <!-- Example row of columns -->
-            <div class="jumbotron">
-                <div class="container">
-                    <h1>Easy Book-后台 </h1>
-                    <p>简单书城后台，管理你的书籍</p>
-                </div>
+            <div id="navbar"
+                 class="navbar-collapse collapse">
             </div>
-
-            <h4 class="btn-group sub-header" role="group" aria-label="...">
-                <button v-for="(item,index) in bookMenuBtn" v-if="index!=0" type="button" class="btn btn-default" @click="addBook(item.menuId)">{{item.menuNmae}}</button>
-            </h4>
-
-            <div class="panel panel-default">
-                <div class="panel-heading">{{menuName}}</div>
-                <div class="panel-body">
-                    {{BooKtext}}
-                </div>
+            <!--/.navbar-collapse -->
+        </div>
+    </nav>
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="container ui-content-box "
+         id="VmBook">
+        <!-- Example row of columns -->
+        <div class="jumbotron">
+            <div class="container">
+                <h1>Easy Book-后台 </h1>
+                <p>简单书城后台，管理你的书籍</p>
             </div>
         </div>
-
-        <footer>
-            <p class="text-center ">&copy; 2018 Personal, Inc.</p>
-        </footer>
-        <!-- /container -->
-
-        <!-- Bootstrap core JavaScript
+        <h4 class="btn-group sub-header"
+            role="group"
+            aria-label="...">
+            <button v-for="(item,index) in bookMenuBtn"
+                    v-if="index!=0"
+                    type="button"
+                    class="btn btn-default"
+                    @click="addBook(item.menuId)">{{item.menuNmae}}</button>
+        </h4>
+        <div class="panel panel-default">
+            <div class="panel-heading">{{menuName}}</div>
+            <div class="panel-body"> {{BooKtext}} </div>
+        </div>
+    </div>
+    <footer>
+        <p class="text-center ">&copy; 2018 Personal, Inc.</p>
+    </footer>
+    <!-- /container -->
+    <!-- Bootstrap core JavaScript
     ================================================== -->
-        <script src="/js/jquery.js "></script>
-        <script src="/js/vue.js "></script>
-        <script src="/js/axios.min.js"></script>
-        <script src="/js/lib/toast/toast.js "></script>
-        <script src="/js/views/book/books.js "></script>
-    </body>
+    <script src="/js/jquery.js "></script>
+    <script src="/js/vue.js "></script>
+    <script src="/js/axios.min.js"></script>
+    <script src="/js/lib/toast/toast.js "></script>
+    <script src="/js/views/book/books.js "></script>
+</body>
 
 </html>

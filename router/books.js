@@ -13,7 +13,6 @@ router.get('/', async (ctx) => {
 router.get('/clawBook', async (ctx) => {
     var menuInfo = ctx.query;
     var page = 10;
-
     var dir = './static/data/book/' + menuInfo.mid + '.json';
     //判断是否有这个文件
     var stat = fs.existsSync(dir);
@@ -22,10 +21,7 @@ router.get('/clawBook', async (ctx) => {
         bookData = JSON.parse(bookData);
         bookData.code = 1;
         ctx.body = bookData;
-
     } else {
-
-        // var booklist = book.booklist(page, )
         ctx.body = menuData;
     }
 
